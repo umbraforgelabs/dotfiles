@@ -1,0 +1,7 @@
+# Personal Profile - Local Bash Aliases
+# Add personal-specific aliases and environment variables here
+# This file is sourced by common/bash_aliases
+
+# Example aliases (uncomment and customize):
+# alias myproject='cd ~/projects/my-project && source .venv/bin/activate'
+# export MY_CUSTOM_VAR=value

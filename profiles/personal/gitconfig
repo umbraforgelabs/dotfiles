@@ -1,0 +1,14 @@
+[user]
+	# Personal profile - fill in your details
+	name = 
+	email = 
+	# GPG signing key fingerprint (format: 0xYOURKEYFINGERPRINT)
+	signingkey = 
+[commit]
+	gpgsign = true
+[core]
+	autocrlf = input
+	editor = vim
+[tag]
+	# Sign all tags with GPG by default
+	gpgsign = true

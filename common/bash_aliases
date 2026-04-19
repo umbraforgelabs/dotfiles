@@ -1,0 +1,65 @@
+# Bash Aliases - Modernized for Ubuntu 24.04 LTS
+# Python 3 with uv package manager, updated syntax
+
+# Terminal Configuration
+export TERM=xterm-256color
+
+# GPG & Git Integration
+export GPG_TTY=$(tty)
+
+# Text Processing Helpers
+export grepip="grep -oE '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b'"
+
+# Editor Configuration
+export VISUAL="vim"
+export EDITOR="$VISUAL"
+
+# Directory Listing Aliases
+alias ll='ls -alF'
+alias lh='ls -alFh'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Wayland & X11 Helpers
+alias gsuon='xhost si:localuser:root'
+alias gsuoff='xhost -si:localuser:root'
+
+# APT Package Manager Helpers
+alias update="sudo apt update && sudo apt -y upgrade && sudo apt -y dist-upgrade"
+alias cleanup='echo "Cleaning Up" && sudo apt -f install && sudo apt -y autoremove && sudo apt -y autoclean && sudo apt -y clean'
+
+# VirtualBox Helpers (if needed)
+# alias mediavm='VBoxManage startvm "xubuntu-media-test" --type headless'
+# alias dockervm='VBoxManage startvm "xubuntu-docker-test" --type headless'
+
+# VNC Helpers (if needed)
+# alias vncchromebook='vncserver :1 -geometry 1366x768 -depth 24'
+
+# Python & UV Package Manager
+# uv is installed globally on the system
+# uv is a fast Python package installer and resolver (https://github.com/astral-sh/uv)
+#
+# Quick Start:
+#   uv init             → Initialize new Python project
+#   uv sync             → Install dependencies from pyproject.toml
+#   uv pip install pkg  → Install package with pip interface
+#   uv run script.py    → Run script in project environment
+#
+# For more info: https://docs.astral.sh/uv/
+
+# Add local bin directories to PATH
+if [ -d ~/.local/bin ]; then
+    export PATH=$PATH:~/.local/bin
+fi
+
+# Load profile-specific and private aliases
+# These allow per-profile customizations (personal vs work)
+if [ -f ~/.bash_aliases_local ]; then
+    source ~/.bash_aliases_local
+fi
+
+# For aliases we don't want to check into git
+# Things like internal network information, secrets, etc.
+if [ -f ~/.bash_aliases_private ]; then
+    source ~/.bash_aliases_private
+fi

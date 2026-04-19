@@ -1,0 +1,7 @@
+# Work Profile - Local Bash Aliases
+# Add work-specific aliases and environment variables here
+# This file is sourced by common/bash_aliases
+
+# Example aliases (uncomment and customize):
+# alias workproject='cd ~/work/project && source .venv/bin/activate'
+# export WORK_EMAIL=yourname@company.com

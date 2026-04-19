@@ -1,0 +1,59 @@
+# Git Configuration Template
+# 
+# This template shows the structure of a gitconfig file.
+# Copy to ~/.gitconfig and customize with your details.
+
+[user]
+	# Your full name as it will appear in commits
+	name = Your Full Name
+	
+	# Your email address
+	email = your.email@example.com
+	
+	# Your GPG signing key fingerprint (format: 0xYOURKEYFINGERPRINT)
+	# To find your key: gpg --list-secret-keys --keyid-format=long
+	# Example: 0x1234567890ABCDEF1234567890ABCDEF12345678
+	signingkey = 0x
+
+[commit]
+	# Sign all commits with GPG by default
+	gpgsign = true
+
+[tag]
+	# Sign all tags with GPG by default
+	gpgsign = true
+
+[core]
+	# Handle line endings: 'input' converts CRLF → LF on commit (recommended for cross-platform projects)
+	autocrlf = input
+	
+	# Default editor for commits, rebases, etc.
+	editor = vim
+
+# === SETUP INSTRUCTIONS ===
+#
+# 1. Make sure GPG is configured:
+#    - See ~/dotfiles/common/gnupg/README.md for GPG setup
+#    - Verify your key: gpg --list-secret-keys --keyid-format=long
+#
+# 2. Fill in your details above:
+#    - [user] name: Your full name
+#    - [user] email: Your email (ideally matching your GPG key)
+#    - [user] signingkey: Your GPG key fingerprint (0x format)
+#
+# 3. Test GPG signing:
+#    git commit --allow-empty -m "Test commit"
+#    git log --show-signature
+#
+# 4. (Optional) If signing fails, check GPG:
+#    echo "test" | gpg --clearsign
+#    gpg-connect-agent updatestartuptty /bye
+#
+# === PROFILE-SPECIFIC CONFIGS ===
+#
+# This dotfiles repo supports multiple profiles (personal/work) with different gitconfigs.
+# Use profile-selector.sh to switch between profiles:
+#    ./profile-selector.sh personal
+#    ./profile-selector.sh work
+#
+# Each profile has its own gitconfig with different name/email/signingkey.

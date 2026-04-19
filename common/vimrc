@@ -1,0 +1,78 @@
+" Vim Configuration - Modernized for Ubuntu 24.04 LTS
+" Optimized for Python development with uv + ruff
+
+if has("syntax")
+    syntax on
+endif
+
+" Color Scheme Configuration
+if has('gui_running')
+    set background=dark
+else
+    set background=dark
+endif
+
+set t_Co=256
+let g:solarized_termcolors=256
+colorscheme solarized
+
+" General Appearance
+set number
+set showmatch
+set textwidth=120
+set enc=utf-8
+
+" Search Configuration
+set hlsearch       " Highlight search results
+set incsearch      " Incremental search (search as you type)
+set smartindent
+set ignorecase
+set smartcase
+
+" Indentation & Tabs
+set tabstop=4
+set expandtab      " Convert tabs to spaces
+set softtabstop=4
+set shiftwidth=4
+
+" Programming Language Support
+if has("autocmd")
+    filetype indent on
+    
+    " Python Configuration (Python 3 with modern standards)
+    autocmd Filetype python setlocal expandtab smarttab shiftwidth=4 softtabstop=4 tabstop=4 textwidth=88
+    
+    " C/C++ Configuration
+    autocmd Filetype c,cpp,slang set shiftwidth=5
+    autocmd Filetype c,cpp,slang set tabstop=5
+    autocmd FileType c,cpp,slang set textwidth=80
+    autocmd FileType c,cpp,slang set ve=block
+    autocmd FileType c,cpp,slang set expandtab
+    autocmd FileType c,cpp,slang set cindent
+    autocmd FileType c,cpp,slang set cino=(0,g0,:0
+    
+    " TeX/LaTeX Configuration
+    autocmd FileType tex,latex setlocal spell spelllang=en_us
+    autocmd FileType tex,latex set wm=4
+    autocmd FileType tex,latex set textwidth=100
+else
+    set autoindent
+endif
+
+" Python Syntax Highlighting
+let python_highlight_all = 1
+
+" Highlight Long Lines (>= 80 characters for code standards)
+augroup vimrc_autocmds
+    autocmd!
+    autocmd FileType python,rst,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
+    autocmd FileType python,rst,c,cpp match Excess /\%81v.*/
+    autocmd FileType python,rst,c,cpp set nowrap
+    autocmd FileType python,rst,c,cpp set colorcolumn=80
+augroup END
+
+" === NOTES ===
+" - Python textwidth set to 88 (matches Black formatter default)
+" - For ruff linting integration, see ../RUFF_SETUP.md
+" - For plugin manager setup (LSP, etc.), see ../PLUGINS.md
+" - Consider using Neovim for modern LSP support (init.vim provides Neovim config)
